@@ -1,0 +1,12 @@
+[
+    {
+      "Id": 0,
+      "NameDepartment": "ОЦБТ",
+      "EmployeeOfDepartment": null
+    },
+    {
+      "Id": 0,
+      "NameDepartment": "ИАО",
+      "EmployeeOfDepartment": null
+    }
+]
