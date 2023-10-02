@@ -15,6 +15,9 @@ namespace NewDiary.Data
         public IGroupWorkRepository GroupWorkRepository { get; set; }
         public IWorkRepository WorkRepository { get; set; }
         public IDiaryEntryRepository DiaryEntryRepository { get; set; }
+        public ISubGroupWorkRepository SubGroupWorkRepository { get; set; }
+        public IElementOfWorkRepository ElementOfWorkRepository { get; set; }
+
 
         public readonly JsonSerializerOptions options;
 
@@ -23,6 +26,8 @@ namespace NewDiary.Data
             IDepartmentRepository DepartmentRepository, 
             IComputerRepository ComputerRepository, 
             IEmployeeRepository EmployeeRepository,
+            ISubGroupWorkRepository SubGroupWorkRepository,
+            IElementOfWorkRepository ElementOfWorkRepository,
             IGroupWorkRepository GroupWorkRepository,
             IWorkRepository WorkRepository,
             IDiaryEntryRepository DiaryEntryRepository
@@ -35,6 +40,9 @@ namespace NewDiary.Data
             this.GroupWorkRepository = GroupWorkRepository;
             this.WorkRepository = WorkRepository;
             this.DiaryEntryRepository = DiaryEntryRepository;
+            this.SubGroupWorkRepository = SubGroupWorkRepository;
+            this.ElementOfWorkRepository = ElementOfWorkRepository;
+
             options = new JsonSerializerOptions
             {
                 Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin, UnicodeRanges.Cyrillic),

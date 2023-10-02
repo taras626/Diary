@@ -24,6 +24,8 @@ builder.Services.AddTransient<IDepartmentRepository, EFDepartmentRepository>();
 builder.Services.AddTransient<IEmployeeRepository, EFEmployeeRepository>();
 builder.Services.AddTransient<IGroupWorkRepository, EFGroupWorkRepository>();
 builder.Services.AddTransient<IWorkRepository, EFWorkRepository>();
+builder.Services.AddTransient<ISubGroupWorkRepository, EFSubGroupWorkRepository>();
+builder.Services.AddTransient<IElementOfWorkRepository, EFElementOfWorkRepository>();
 builder.Services.AddTransient<IDiaryEntryRepository, EFDiaryEntryRepository>();
 
 //Менеджер всех запросов к БД
