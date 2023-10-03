@@ -6,8 +6,13 @@ namespace NewDiary.Data.Abstract
     public interface IWorkRepository
     {
         public Work? GetItemById(int id);
-        public IQueryable<Work> GetItems();
+        public IQueryable<Work> GetItemsByEmployee(Employee employee);
+        public IQueryable<Work> GetItemsByDepartment(Department department);
+        public IQueryable<Work> GetItemsByDay(DateTime dayOfWork);
+        public IQueryable<Work> GetItemsByMonth(DateTime monthOfWork);
+        public IQueryable<Work> GetItemsByYear(int year);
+        public IQueryable<Work> GetItemsBetweenDays(DateTime beginDay, DateTime endDay);
         public void Delete(ICollection<Work> items);
-        public void SaveChanges(ICollection<Work> items); 
+        public void SaveChanges(ICollection<Work> items);
     }
 }

@@ -17,21 +17,21 @@ namespace NewDiary.Controllers
             _dataManager = dataManager;
         }
 
-        // GET: api/<GroupWorkController>
+        // GET: api/SubGroupWork
         [HttpGet]
         public string Get()
         {
             return JsonSerializer.Serialize(_dataManager.SubGroupWorkRepository.GetItems(), _dataManager.options);
         }
 
-        // GET api/<GroupWorkController>/5
+        // GET api/SubGroupWork/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return JsonSerializer.Serialize(_dataManager.SubGroupWorkRepository.GetItemById(id), _dataManager.options);
         }
 
-        // POST api/<GroupWorkController>
+        // POST api/SubGroupWork
         [HttpPost]
         public void Post([FromBody] string jsonGroups)
         {
@@ -43,7 +43,7 @@ namespace NewDiary.Controllers
             _dataManager.SubGroupWorkRepository.SaveChanges(newGroups);
         }
 
-        // DELETE api/<GroupWorkController>/5
+        // DELETE api/SubGroupWork
         [HttpDelete]
         public void Delete(string jsonGroups)
         {

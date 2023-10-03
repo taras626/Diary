@@ -14,7 +14,6 @@ namespace NewDiary.Data
         public IEmployeeRepository EmployeeRepository { get; set; }
         public IGroupWorkRepository GroupWorkRepository { get; set; }
         public IWorkRepository WorkRepository { get; set; }
-        public IDiaryEntryRepository DiaryEntryRepository { get; set; }
         public ISubGroupWorkRepository SubGroupWorkRepository { get; set; }
         public IElementOfWorkRepository ElementOfWorkRepository { get; set; }
 
@@ -29,8 +28,7 @@ namespace NewDiary.Data
             ISubGroupWorkRepository SubGroupWorkRepository,
             IElementOfWorkRepository ElementOfWorkRepository,
             IGroupWorkRepository GroupWorkRepository,
-            IWorkRepository WorkRepository,
-            IDiaryEntryRepository DiaryEntryRepository
+            IWorkRepository WorkRepository
             )
         {
             this.AuditoriumRepository = AuditoriumRepository;
@@ -39,7 +37,6 @@ namespace NewDiary.Data
             this.EmployeeRepository = EmployeeRepository;
             this.GroupWorkRepository = GroupWorkRepository;
             this.WorkRepository = WorkRepository;
-            this.DiaryEntryRepository = DiaryEntryRepository;
             this.SubGroupWorkRepository = SubGroupWorkRepository;
             this.ElementOfWorkRepository = ElementOfWorkRepository;
 
