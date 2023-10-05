@@ -32,9 +32,9 @@ namespace NewDiary.Controllers
 
         // POST api/Computer
         [HttpPost]
-        public void Post(string jsonGroups)
+        public void Post([FromBody] JsonDocument jsonComputers)
         {
-            ICollection<Computer> newGroups = JsonSerializer.Deserialize<ICollection<Computer>>(jsonGroups, _dataManager.options);
+            ICollection<Computer> newGroups = JsonSerializer.Deserialize<ICollection<Computer>>(jsonComputers, _dataManager.options);
 
             if (newGroups == null)
                 return;
@@ -44,9 +44,9 @@ namespace NewDiary.Controllers
 
         // DELETE api/Computer
         [HttpDelete]
-        public void Delete(string jsonGroups)
+        public void Delete([FromBody] JsonDocument jsonComputers)
         {
-            ICollection<Computer> newGroups = JsonSerializer.Deserialize<ICollection<Computer>>(jsonGroups, _dataManager.options);
+            ICollection<Computer> newGroups = JsonSerializer.Deserialize<ICollection<Computer>>(jsonComputers, _dataManager.options);
 
             if (newGroups == null)
                 return;

@@ -32,9 +32,9 @@ namespace NewDiary.Controllers
 
         // POST api/Auditorium
         [HttpPost]
-        public void Post(string jsonGroups)
+        public void Post([FromBody] JsonDocument jsonAuditoriums)
         {
-            ICollection<Auditorium> newGroups = JsonSerializer.Deserialize<ICollection<Auditorium>>(jsonGroups, _dataManager.options);
+            ICollection<Auditorium> newGroups = JsonSerializer.Deserialize<ICollection<Auditorium>>(jsonAuditoriums, _dataManager.options);
 
             if (newGroups == null)
                 return;
@@ -44,14 +44,14 @@ namespace NewDiary.Controllers
 
         // DELETE api/Auditorium
         [HttpDelete]
-        public void Delete(string jsonGroups)
+        public void Delete([FromBody] JsonDocument jsonAuditoriums)
         {
-            ICollection<Auditorium> newGroups = JsonSerializer.Deserialize<ICollection<Auditorium>>(jsonGroups, _dataManager.options);
+            ICollection<Auditorium> newAuditoriums = JsonSerializer.Deserialize<ICollection<Auditorium>>(jsonAuditoriums, _dataManager.options);
 
-            if (newGroups == null)
+            if (newAuditoriums == null)
                 return;
 
-            _dataManager.AuditoriumRepository.Delete(newGroups);
+            _dataManager.AuditoriumRepository.Delete(newAuditoriums);
         }
     }
 }

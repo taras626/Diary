@@ -33,9 +33,9 @@ namespace NewDiary.Controllers
 
         // POST api/Department
         [HttpPost]
-        public void Post([FromBody] JsonDocument jsonGroups)
+        public void Post([FromBody] JsonDocument jsonDepartments)
         {
-            ICollection<Department> newGroups = JsonSerializer.Deserialize<ICollection<Department>>(jsonGroups, _dataManager.options);
+            ICollection<Department> newGroups = JsonSerializer.Deserialize<ICollection<Department>>(jsonDepartments, _dataManager.options);
 
             if (newGroups == null)
                 return;
@@ -45,9 +45,9 @@ namespace NewDiary.Controllers
 
         // DELETE api/Department
         [HttpDelete]
-        public void Delete([FromBody] string jsonGroups)
+        public void Delete([FromBody] JsonDocument jsonDepartments)
         {
-            ICollection<Department> newGroups = JsonSerializer.Deserialize<ICollection<Department>>(jsonGroups, _dataManager.options);
+            ICollection<Department> newGroups = JsonSerializer.Deserialize<ICollection<Department>>(jsonDepartments, _dataManager.options);
 
             if (newGroups == null)
                 return;

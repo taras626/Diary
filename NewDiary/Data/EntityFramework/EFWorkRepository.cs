@@ -14,7 +14,7 @@ namespace NewDiary.Data.EntityFramework
         public Work? GetItemById(int id)
         {
             return context.Works.FirstOrDefault(i => i.IdWork == id);
-        }
+        }//Y
 
         public void Delete(ICollection<Work> items)
         {
@@ -22,7 +22,7 @@ namespace NewDiary.Data.EntityFramework
                 context.Works.Remove(item);
 
             context.SaveChanges();
-        }
+        }//Y
         
         public void SaveChanges(ICollection<Work> items)
         {
@@ -35,17 +35,35 @@ namespace NewDiary.Data.EntityFramework
             }
 
             context.SaveChanges();
-        }
+        }//Y
 
-        public IQueryable<Work> GetItemsByEmployee(Employee employee)
+        public IQueryable<Work> GetItemsByEmployee(Employee employee, DateTime beginDay = default, DateTime endDay = default)
         {
-            return context.Works.Where(de => de.Employee.Equals(employee));
-        }
+            if(beginDay == default && endDay == default)
+                return context.Works.Where(w => w.Employee.Equals(employee));
 
-        public IQueryable<Work> GetItemsByDepartment(Department department)
+            if (beginDay == default)
+                return context.Works.Where(w => w.Employee.Equals(employee)).Where(w => w.DateOfCompletion <= endDay);
+
+            if (endDay == default)
+                return context.Works.Where(w => w.Employee.Equals(employee)).Where(w => w.DateOfCompletion == beginDay);
+
+            return context.Works.Where(w => w.Employee.Equals(employee)).Where(w => w.DateOfCompletion <= endDay && w.DateOfCompletion >= beginDay);
+        }//Y
+
+        public IQueryable<Work> GetItemsByDepartment(Department department, DateTime beginDay = default, DateTime endDay = default)
         {
-            return context.Works.Where(de => de.Employee.Department.Equals(department));
-        }
+            if (beginDay == default && endDay == default)
+                return context.Works.Where(w => w.Employee.Department.Equals(department));
+
+            if (beginDay == default)
+                return context.Works.Where(w => w.Employee.Department.Equals(department)).Where(w => w.DateOfCompletion <= endDay);
+
+            if (endDay == default)
+                return context.Works.Where(w => w.Employee.Department.Equals(department)).Where(w => w.DateOfCompletion == beginDay);
+
+            return context.Works.Where(w => w.Employee.Department.Equals(department)).Where(w => w.DateOfCompletion <= endDay && w.DateOfCompletion >= beginDay);
+        }//Y
 
         public IQueryable<Work> GetItemsByYear(int year)
         {
