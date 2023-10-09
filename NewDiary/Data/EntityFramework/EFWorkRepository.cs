@@ -13,7 +13,7 @@ namespace NewDiary.Data.EntityFramework
 
         public Work? GetItemById(int id)
         {
-            return context.Works.FirstOrDefault(i => i.IdWork == id);
+            return context.Works.FirstOrDefault(i => i.Id == id);
         }//Y
 
         public void Delete(ICollection<Work> items)
@@ -28,7 +28,7 @@ namespace NewDiary.Data.EntityFramework
         {
             foreach (Work item in items) 
             {
-                if (item.IdWork == default)
+                if (item.Id == default)
                     context.Entry(item).State = EntityState.Added;
                 else
                     context.Entry(item).State = EntityState.Modified;

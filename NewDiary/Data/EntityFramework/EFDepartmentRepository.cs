@@ -12,7 +12,7 @@ namespace NewDiary.Data.EntityFramework
 
         public Department? GetItemById(int id)
         {
-            return context.Departments.FirstOrDefault(d => d.IdDepartment == id);
+            return context.Departments.FirstOrDefault(d => d.Id == id);
         }
 
         public IQueryable<Department> GetItems()
@@ -32,7 +32,7 @@ namespace NewDiary.Data.EntityFramework
         {
             foreach (Department item in items)
             {
-                if (item.IdDepartment == default)
+                if (item.Id == default)
                     context.Entry(item).State = EntityState.Added;
                 else
                     context.Entry(item).State = EntityState.Modified;

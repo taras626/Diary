@@ -9,19 +9,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace InterfaceForDiary
 {
     /// <summary>
-    /// Логика взаимодействия для Page1.xaml
+    /// Логика взаимодействия для AdminPanel.xaml
     /// </summary>
-    public partial class Page1 : Page
+    public partial class AdminPanel : Window
     {
-        public Page1()
+        public AdminPanel()
         {
             InitializeComponent();
         }
+
+
     }
 }

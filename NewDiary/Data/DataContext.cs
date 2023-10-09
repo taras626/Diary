@@ -24,14 +24,14 @@ namespace NewDiary.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Auditorium>().HasKey(a => a.IdAuditorium);
-            modelBuilder.Entity<GroupWork>().HasKey(gw => gw.IdGroupWork);
-            modelBuilder.Entity<Computer>().HasKey(c => c.IdComputer);
-            modelBuilder.Entity<Work>().HasKey(w => w.IdWork);
-            modelBuilder.Entity<Employee>().HasKey(e => e.IdEmployee);
-            modelBuilder.Entity<Department>().HasKey(d => d.IdDepartment);
-            modelBuilder.Entity<SubGroupWork>().HasKey(sgw => sgw.IdSubGroupWork);
-            modelBuilder.Entity<ElementOfWork>().HasKey(eow => eow.IdElementOfWork);
+            modelBuilder.Entity<Auditorium>().HasKey(a => a.Id);
+            modelBuilder.Entity<GroupWork>().HasKey(gw => gw.Id);
+            modelBuilder.Entity<Computer>().HasKey(c => c.Id);
+            modelBuilder.Entity<Work>().HasKey(w => w.Id);
+            modelBuilder.Entity<Employee>().HasKey(e => e.Id);
+            modelBuilder.Entity<Department>().HasKey(d => d.Id);
+            modelBuilder.Entity<SubGroupWork>().HasKey(sgw => sgw.Id);
+            modelBuilder.Entity<ElementOfWork>().HasKey(eow => eow.Id);
         }
     }
 }

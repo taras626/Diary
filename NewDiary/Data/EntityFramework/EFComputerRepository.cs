@@ -11,7 +11,7 @@ namespace NewDiary.Data.EntityFramework
 
         public Computer? GetItemById(int id)
         {
-            return context.Computers.FirstOrDefault(i => i.IdComputer == id);
+            return context.Computers.FirstOrDefault(i => i.Id == id);
         }
 
         public IQueryable<Computer> GetItems()
@@ -21,7 +21,7 @@ namespace NewDiary.Data.EntityFramework
 
         public IQueryable<Computer> GetComputersFromAuditory(Auditorium auditorium) 
         {
-            return context.Computers.Where(i => i.Auditorium.IdAuditorium == auditorium.IdAuditorium);
+            return context.Computers.Where(i => i.Auditorium.Id == auditorium.Id);
         }
         
         public void Delete(ICollection<Computer> items)
@@ -37,7 +37,7 @@ namespace NewDiary.Data.EntityFramework
         {
             foreach (Computer item in items)
             {
-                if (item.IdComputer == default)
+                if (item.Id == default)
                     context.Entry(item).State = EntityState.Added;
                 else
                     context.Entry(item).State = EntityState.Modified;

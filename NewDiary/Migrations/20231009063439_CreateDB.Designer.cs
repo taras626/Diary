@@ -12,8 +12,8 @@ using NewDiary.Data;
 namespace NewDiary.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231002055441_NewDiary")]
-    partial class NewDiary
+    [Migration("20231009063439_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,176 +24,173 @@ namespace NewDiary.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("ComputerWork", b =>
+                {
+                    b.Property<int>("ComputerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ComputerId", "WorkId");
+
+                    b.HasIndex("WorkId");
+
+                    b.ToTable("ComputerWork");
+                });
+
             modelBuilder.Entity("NewDiary.Model.Auditorium", b =>
                 {
-                    b.Property<int>("IdAuditorium")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAuditorium"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameAuditorium")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdAuditorium");
+                    b.HasKey("Id");
 
                     b.ToTable("Auditorias");
                 });
 
             modelBuilder.Entity("NewDiary.Model.Computer", b =>
                 {
-                    b.Property<int>("IdComputer")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdComputer"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("AuditoriumIdAuditorium")
+                    b.Property<int>("AuditoriumId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NameComputer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdComputer");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AuditoriumIdAuditorium");
+                    b.HasIndex("AuditoriumId");
 
                     b.ToTable("Computers");
                 });
 
             modelBuilder.Entity("NewDiary.Model.Department", b =>
                 {
-                    b.Property<int>("IdDepartment")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDepartment"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("NameDepartment")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdDepartment");
+                    b.HasKey("Id");
 
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("NewDiary.Model.DiaryEntry", b =>
-                {
-                    b.Property<int>("IdDiaryEntry")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDiaryEntry"), 1L, 1);
-
-                    b.Property<int>("EmployeeIdEmployee")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdWork")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdDiaryEntry");
-
-                    b.HasIndex("EmployeeIdEmployee");
-
-                    b.ToTable("DiaryEntries");
-                });
-
             modelBuilder.Entity("NewDiary.Model.ElementOfWork", b =>
                 {
-                    b.Property<int>("IdElementOfWork")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdElementOfWork"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameElementOfWork")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Norm")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubGroupWorkIdSubGroupWork")
+                    b.Property<int>("SubGroupWorkId")
                         .HasColumnType("int");
 
-                    b.HasKey("IdElementOfWork");
+                    b.HasKey("Id");
 
-                    b.HasIndex("SubGroupWorkIdSubGroupWork");
+                    b.HasIndex("SubGroupWorkId");
 
                     b.ToTable("ElementsOfWorks");
                 });
 
             modelBuilder.Entity("NewDiary.Model.Employee", b =>
                 {
-                    b.Property<int>("IdEmployee")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdEmployee"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("DepartmentIdDepartment")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameEmployee")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdEmployee");
+                    b.HasKey("Id");
 
-                    b.HasIndex("DepartmentIdDepartment");
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Employees");
                 });
 
             modelBuilder.Entity("NewDiary.Model.GroupWork", b =>
                 {
-                    b.Property<int>("IdGroupWork")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdGroupWork"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameGroupWork")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdGroupWork");
+                    b.HasKey("Id");
 
                     b.ToTable("GroupWorks");
                 });
 
             modelBuilder.Entity("NewDiary.Model.SubGroupWork", b =>
                 {
-                    b.Property<int>("IdSubGroupWork")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdSubGroupWork"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("GroupWorkIdGroupWork")
+                    b.Property<int>("GroupWorkId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameSubGroupWork")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdSubGroupWork");
+                    b.HasKey("Id");
 
-                    b.HasIndex("GroupWorkIdGroupWork");
+                    b.HasIndex("GroupWorkId");
 
                     b.ToTable("SubGroupWorks");
                 });
 
             modelBuilder.Entity("NewDiary.Model.Work", b =>
                 {
-                    b.Property<int>("IdWork")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdWork"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CountOfEntities")
                         .HasColumnType("int");
@@ -201,65 +198,62 @@ namespace NewDiary.Migrations
                     b.Property<DateTime>("DateOfCompletion")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DateOfInput")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DiaryEntry")
+                    b.Property<int>("ElementOfWorkId")
                         .HasColumnType("int");
 
-                    b.Property<int>("GroupOfThisWorkIdGroupWork")
+                    b.Property<int>("EmployeeId")
                         .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TimeSpent")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsedComputerIdComputer")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
 
-                    b.HasKey("IdWork");
+                    b.HasIndex("ElementOfWorkId");
 
-                    b.HasIndex("DiaryEntry")
-                        .IsUnique();
-
-                    b.HasIndex("GroupOfThisWorkIdGroupWork");
-
-                    b.HasIndex("UsedComputerIdComputer");
+                    b.HasIndex("EmployeeId");
 
                     b.ToTable("Works");
+                });
+
+            modelBuilder.Entity("ComputerWork", b =>
+                {
+                    b.HasOne("NewDiary.Model.Computer", null)
+                        .WithMany()
+                        .HasForeignKey("ComputerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NewDiary.Model.Work", null)
+                        .WithMany()
+                        .HasForeignKey("WorkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("NewDiary.Model.Computer", b =>
                 {
                     b.HasOne("NewDiary.Model.Auditorium", "Auditorium")
                         .WithMany("Computers")
-                        .HasForeignKey("AuditoriumIdAuditorium")
+                        .HasForeignKey("AuditoriumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Auditorium");
                 });
 
-            modelBuilder.Entity("NewDiary.Model.DiaryEntry", b =>
-                {
-                    b.HasOne("NewDiary.Model.Employee", "Employee")
-                        .WithMany("DiaryEntries")
-                        .HasForeignKey("EmployeeIdEmployee")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("NewDiary.Model.ElementOfWork", b =>
                 {
                     b.HasOne("NewDiary.Model.SubGroupWork", "SubGroupWork")
                         .WithMany("ElementsOfWorks")
-                        .HasForeignKey("SubGroupWorkIdSubGroupWork")
+                        .HasForeignKey("SubGroupWorkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -270,7 +264,7 @@ namespace NewDiary.Migrations
                 {
                     b.HasOne("NewDiary.Model.Department", "Department")
                         .WithMany("EmployeeOfDepartment")
-                        .HasForeignKey("DepartmentIdDepartment")
+                        .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -281,7 +275,7 @@ namespace NewDiary.Migrations
                 {
                     b.HasOne("NewDiary.Model.GroupWork", "GroupWork")
                         .WithMany("SubGroupsWork")
-                        .HasForeignKey("GroupWorkIdGroupWork")
+                        .HasForeignKey("GroupWorkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -290,29 +284,21 @@ namespace NewDiary.Migrations
 
             modelBuilder.Entity("NewDiary.Model.Work", b =>
                 {
-                    b.HasOne("NewDiary.Model.DiaryEntry", "Entry")
-                        .WithOne("ObjOfWork")
-                        .HasForeignKey("NewDiary.Model.Work", "DiaryEntry")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NewDiary.Model.GroupWork", "GroupOfThisWork")
+                    b.HasOne("NewDiary.Model.ElementOfWork", "ElementOfWork")
                         .WithMany("Works")
-                        .HasForeignKey("GroupOfThisWorkIdGroupWork")
+                        .HasForeignKey("ElementOfWorkId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("NewDiary.Model.Computer", "UsedComputer")
-                        .WithMany("Works")
-                        .HasForeignKey("UsedComputerIdComputer")
+                    b.HasOne("NewDiary.Model.Employee", "Employee")
+                        .WithMany("Work")
+                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Entry");
+                    b.Navigation("ElementOfWork");
 
-                    b.Navigation("GroupOfThisWork");
-
-                    b.Navigation("UsedComputer");
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("NewDiary.Model.Auditorium", b =>
@@ -320,32 +306,24 @@ namespace NewDiary.Migrations
                     b.Navigation("Computers");
                 });
 
-            modelBuilder.Entity("NewDiary.Model.Computer", b =>
-                {
-                    b.Navigation("Works");
-                });
-
             modelBuilder.Entity("NewDiary.Model.Department", b =>
                 {
                     b.Navigation("EmployeeOfDepartment");
                 });
 
-            modelBuilder.Entity("NewDiary.Model.DiaryEntry", b =>
+            modelBuilder.Entity("NewDiary.Model.ElementOfWork", b =>
                 {
-                    b.Navigation("ObjOfWork")
-                        .IsRequired();
+                    b.Navigation("Works");
                 });
 
             modelBuilder.Entity("NewDiary.Model.Employee", b =>
                 {
-                    b.Navigation("DiaryEntries");
+                    b.Navigation("Work");
                 });
 
             modelBuilder.Entity("NewDiary.Model.GroupWork", b =>
                 {
                     b.Navigation("SubGroupsWork");
-
-                    b.Navigation("Works");
                 });
 
             modelBuilder.Entity("NewDiary.Model.SubGroupWork", b =>

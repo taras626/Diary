@@ -11,7 +11,7 @@ namespace NewDiary.Data.EntityFramework
         public EFEmployeeRepository(DataContext context) => this.context = context;
         public Employee? GetItemById(int id)
         {
-            return context.Employees.FirstOrDefault(e => e.IdEmployee == id);   
+            return context.Employees.FirstOrDefault(e => e.Id == id);   
         }
 
         public IQueryable<Employee> GetItems()
@@ -30,7 +30,7 @@ namespace NewDiary.Data.EntityFramework
         {
             foreach (var item in items)
             {
-                if (item.IdEmployee == default)
+                if (item.Id == default)
                     context.Entry(item).State = EntityState.Added;
                 else
                     context.Entry(item).State = EntityState.Modified;

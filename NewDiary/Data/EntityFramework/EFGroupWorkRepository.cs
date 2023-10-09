@@ -11,7 +11,7 @@ namespace NewDiary.Data.EntityFramework
 
         public GroupWork? GetItemById(int id)
         {
-            return context.GroupWorks.FirstOrDefault(i => i.IdGroupWork == id);
+            return context.GroupWorks.FirstOrDefault(i => i.Id == id);
         }
 
         public IQueryable<GroupWork> GetItems()
@@ -31,7 +31,7 @@ namespace NewDiary.Data.EntityFramework
         {
             foreach (GroupWork item in items)
             {
-                if (item.IdGroupWork == default)
+                if (item.Id == default)
                     context.Entry(item).State = EntityState.Added;
                 else
                     context.Entry(item).State = EntityState.Modified;

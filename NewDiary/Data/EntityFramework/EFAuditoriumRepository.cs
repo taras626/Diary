@@ -12,7 +12,7 @@ namespace NewDiary.Data.EntityFramework
 
         public Auditorium? GetItemById(int id)
         {
-            return context.Auditorias.FirstOrDefault(i => i.IdAuditorium == id);
+            return context.Auditorias.FirstOrDefault(i => i.Id == id);
         }
 
         public IQueryable<Auditorium> GetItems()
@@ -33,7 +33,7 @@ namespace NewDiary.Data.EntityFramework
         {
             foreach (Auditorium item in items)
             {
-                if (item.IdAuditorium == default)
+                if (item.Id == default)
                     context.Entry(item).State = EntityState.Added;
                 else
                     context.Entry(item).State = EntityState.Modified;

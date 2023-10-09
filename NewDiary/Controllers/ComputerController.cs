@@ -20,7 +20,7 @@ namespace NewDiary.Controllers
         [HttpGet]
         public string Get()
         {
-            return JsonSerializer.Serialize(_dataManager.ComputerRepository.GetItems(), _dataManager.options);
+            return JsonSerializer.Serialize(_dataManager.ComputerRepository.GetItems().ToList(), _dataManager.options);
         }
 
         // GET api/Computer/5
